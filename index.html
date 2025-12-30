@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DO DPO PC IPNU IPPNU SIDOARJO</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* Semua section disembunyikan */
+      section {
+        display: none;
+      }
+
+      /* Section aktif tampil */
+      section.active {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Departement Organisasi PC IPNU IPPNU SIDOARJO</h1>
+    </header>
+
+    <nav>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+
+      <ul>
+        <li>
+          <a href="#beranda" data-page="beranda" class="active">Beranda</a>
+        </li>
+        <li>
+          <a href="#koleksi" data-page="koleksi">Berkas Kelayakan Konferensi</a>
+        </li>
+        <li>
+          <a href="#kembali" data-page="kembali"
+            >Pengumpulan Berkas Kelayakan Konferensi</a
+          >
+        </li>
+        <li><a href="#pinjam" data-page="pinjam">Buku Pedoman</a></li>
+        <li><a href="#kontak" data-page="kontak">Kontak</a></li>
+      </ul>
+    </nav>
+
+    <!-- ======================= HALAMAN BERANDA ======================= -->
+    <section id="beranda" class="active container beranda">
+      <div class="hero">
+        <h2>📁 Selamat Datang di DO DPO PC IPNU IPPNU SIDOARJO</h2>
+        <p>
+          Pusat dokumentasi dan arsip resmi Departement Organisasi PC IPNU IPPNU
+          Sidoarjo.
+        </p>
+      </div>
+
+      <div class="fitur-wrapper">
+        <div class="fitur-card">
+          <h3>📄 Berkas Kelayakan Konferensi</h3>
+          <p>
+            Dokumen administrasi dan kelayakan konferensi yang terstruktur dan
+            terdokumentasi.
+          </p>
+        </div>
+
+        <div class="fitur-card">
+          <h3>📘 Buku Pedoman Organisasi</h3>
+          <p>Kumpulan pedoman resmi sebagai acuan pelaksanaan organisasi.</p>
+        </div>
+
+        <div class="fitur-card">
+          <h3>🗂 Arsip Digital</h3>
+          <p>
+            Penyimpanan arsip organisasi secara digital untuk kemudahan akses.
+          </p>
+        </div>
+      </div>
+
+      <div class="info">
+        <h3>🏛 Tentang Departement Organisasi</h3>
+        <p>
+          Departement Organisasi PC IPNU IPPNU Sidoarjo berperan dalam
+          pengelolaan administrasi, arsip, dan dokumen resmi organisasi guna
+          menunjang keberlangsungan konferensi dan program kerja.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= HALAMAN KOLEKSI ======================= -->
+    <section id="koleksi" class="container page">
+      <h2>📄 Berkas Kelayakan Konferensi</h2>
+      <p>Unduh berkas resmi kelayakan konferensi.</p>
+
+      <div>
+        <h2 class="title">Buku Pedoman Organisasi</h2>
+      </div>
+
+      <div id="konferensiContainer" class="grid"></div>
+    </section>
+
+    <section id="kembali" class="container page">
+      <h2>📤 Pengumpulan Berkas Kelayakan Konferensi</h2>
+      <p>Silakan unggah seluruh berkas persyaratan konferensi.</p>
+
+      <form id="formPengumpulan" class="form">
+        <label>Jenis Berkas</label>
+        <select id="jenisBerkas" required>
+          <option value="">-- Pilih Berkas --</option>
+          <option value="1_Surat_Permohonan">
+            Surat Permohonan Uji Kelayakan
+          </option>
+          <option value="2_Draft_Materi">Draft Materi Persidangan</option>
+          <option value="3_LPJ_PAC">Draft LPJ PAC</option>
+          <option value="4_Konsideran_BA">Draft Konsideran & BA</option>
+          <option value="5_Hasil_Konferancab">
+            Hasil Konferancab Sebelumnya
+          </option>
+          <option value="6_Hasil_Rakerancab">Hasil Rakerancab Terakhir</option>
+          <option value="7_TOR">TOR Konferancab</option>
+          <option value="8_Daftar_Peserta">Daftar Peserta Terverifikasi</option>
+          <option value="9_Sertifikat_Pengkaderan">
+            Sertifikat Pengkaderan
+          </option>
+        </select>
+
+        <label>File</label>
+        <input type="file" id="fileUpload" required />
+
+        <button class="btn" type="submit">Upload Berkas</button>
+      </form>
+
+      <div id="statusUpload"></div>
+    </section>
+
+    <!-- ======================= HALAMAN PINJAM ======================= -->
+    <section id="pinjam" class="container page">
+      <h2>📘 Buku Pedoman Organisasi</h2>
+      <p>Dokumen pedoman resmi organisasi.</p>
+
+      <div>
+        <h2 class="title">Buku Pedoman Organisasi</h2>
+      </div>
+
+      <div id="pedomanContainer" class="grid"></div>
+    </section>
+
+    <!-- ======================= HALAMAN KONTAK ======================= -->
+    <section id="kontak" class="container">
+      <h2>Kontak</h2>
+      <!-- WhatsApp Button Admin 1 -->
+      <button
+        class="wa-button"
+        onclick="openWA('6285648218684')"
+        data-tooltip="Chat Admin IPNU"
+      >
+        Rekan IPPNU
+      </button>
+
+      <!-- WhatsApp Button Admin 2 -->
+      <button
+        class="wa-button wa-button-2"
+        onclick="openWA('6281807911093')"
+        data-tooltip="Chat Admin IPPNU"
+      >
+        Rekanita IPNU
+      </button>
+    </section>
+
+    <script src="script.js"></script>
+
+    <footer>&copy; 2025 DO & DPO PC IPNU IPPNU SIDOARJO — Mengare IT</footer>
+  </body>
+</html>
