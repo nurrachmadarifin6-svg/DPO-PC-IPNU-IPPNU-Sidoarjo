@@ -23,6 +23,34 @@ navLinks.forEach((link) => {
   });
 });
 
+document.querySelectorAll(".fitur-card").forEach((card) => {
+  card.addEventListener("click", () => {
+    const page = card.dataset.page;
+
+    // sembunyikan semua section
+    document.querySelectorAll("section").forEach((sec) => {
+      sec.classList.remove("active");
+    });
+
+    // tampilkan section tujuan
+    document.getElementById(page).classList.add("active");
+
+    // update menu aktif
+    document.querySelectorAll("nav a").forEach((a) => {
+      a.classList.remove("active");
+      if (a.dataset.page === page) {
+        a.classList.add("active");
+      }
+    });
+
+    // update URL (opsional, tapi keren)
+    history.pushState(null, "", `#${page}`);
+
+    // scroll ke atas
+    window.scrollTo(0, 0);
+  });
+});
+
 const API_UPLOAD =
   "https://script.google.com/macros/s/AKfycbyoC6nBY24BE-qNNAAh_aQ7xSRVp00te25TduJXZiVw5GSajRx4SDydhqQib91n9uE/exec";
 
@@ -135,9 +163,41 @@ async function loadPedoman() {
   }
 }
 
+const API_URL_foto =
+  "https://script.google.com/macros/s/AKfycbya25n9pWrxzgzmYBC0RIg-GltaHaG9X2c7ZoZhj8NmATM43jqM9AXecWS7Rq0LVSg/exec";
+
+async function loadDokumentasi() {
+  const container = document.getElementById("dokumentasiContainer");
+  container.innerHTML = "<p>Memuat dokumentasi...</p>";
+
+  try {
+    const res = await fetch(API_URL_foto);
+    const files = await res.json();
+
+    container.innerHTML = "";
+
+    files.forEach((file) => {
+      const card = document.createElement("div");
+      card.classList.add("doc-card");
+
+      card.innerHTML = `
+        <a href="${file.url}" target="_blank" title="${file.name}">
+          <img src="${file.thumbnail}" alt="${file.name}">
+        </a>
+        <div class="doc-title">${file.name}</div>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (err) {
+    container.innerHTML = "<p style='color:red'>Gagal memuat dokumentasi.</p>";
+  }
+}
+
 window.onload = () => {
   loadKonferensi();
   loadPedoman();
+  loadDokumentasi();
 };
 
 const menuToggle = document.getElementById("menuToggle");
@@ -154,23 +214,22 @@ document.addEventListener("click", function (e) {
   }
 });
 
+function openWA(nomor) {
+  window.open(
+    "https://wa.me/" +
+      nomor +
+      "?text=Assalamu%27alaikum%20Admin%2C%20saya%20ingin%20bertanya.",
+    "_blank"
+  );
+}
 
-  function openWA(nomor) {
-    window.open(
-      "https://wa.me/" +
-        nomor +
-        "?text=Assalamu%27alaikum%20Admin%2C%20saya%20ingin%20bertanya.",
-      "_blank"
-    );
-  }
-
-  // Show button after scroll
-  window.addEventListener("scroll", () => {
-    document.querySelectorAll(".wa-button").forEach((btn) => {
-      if (window.scrollY > 200) {
-        btn.classList.add("show");
-      } else {
-        btn.classList.remove("show");
-      }
-    });
+// Show button after scroll
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".wa-button").forEach((btn) => {
+    if (window.scrollY > 200) {
+      btn.classList.add("show");
+    } else {
+      btn.classList.remove("show");
+    }
   });
+});
